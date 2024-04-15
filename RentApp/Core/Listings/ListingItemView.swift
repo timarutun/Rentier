@@ -19,17 +19,9 @@ struct ListingItemView: View {
     var body: some View {
         VStack(spacing: 8) {
             // Images
-            TabView {
-                ForEach(images, id: \.self) { image in
-                    Image(image)
-                        .resizable()
-                        .scaledToFill()
-
-                }
-            }
+            ListingImageCarouselView()
             .frame(height: 320)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .tabViewStyle(.page)
             
             // Listing details
             HStack(alignment: .top) {
@@ -37,19 +29,21 @@ struct ListingItemView: View {
                 VStack(alignment: .leading) {
                     Text("Yamaha Drum Set")
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Text("12 mi away")
                         .foregroundStyle(.gray)
-                    Text("Apr 12 - 15")
+                    Text("Available today")
                         .foregroundStyle(.gray)
                 }
                 Spacer()
                 // Price
                 HStack(spacing: 4) {
-                    Text("$25")
+                    Text("$15")
                         .fontWeight(.semibold)
-                    Text("/ day")
+                    Text("/ hour")
                 }
+                .foregroundStyle(.black)
             }
             .font(.footnote)
         }
