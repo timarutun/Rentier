@@ -17,13 +17,29 @@ struct ListingDetailView: View {
     ]
     
     @State private var hours = 1
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ScrollView {
             
-            ListingImageCarouselView()
-                .frame(height: 320)
-                .padding(.bottom)
+            ZStack(alignment: .topLeading) {
+                ListingImageCarouselView()
+                    .frame(height: 320)
+                    .padding(.bottom)
+                
+                Button(action: {
+                    dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                        .background {
+                            Circle()
+                                .fill(.white)
+                                .frame(width: 32, height: 32)
+                        }
+                        .padding(32)
+                })
+            }
             
             VStack(alignment: .leading, spacing: 8) {
                 Text("Yamaha Drum Set")
@@ -89,6 +105,7 @@ struct ListingDetailView: View {
             .padding(.horizontal, 20)
         }
         .ignoresSafeArea()
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 
